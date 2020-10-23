@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<link rel="stylesheet" href="drumkit.css">
+    </head>
+    <body>
+        <div class="keys">
+
+<div data-key='65' class="key">
+    <kbd>A</kbd>
+    <span class="sound">clap</span>
+</div>
+
+<div data-key='83' class="key">
+    <kbd>S</kbd>
+    <span class="sound">Hihat</span>
+</div>
+
+<div data-key='68' class="key">
+    <kbd>D</kbd>
+    <span class="sound">Kick</span>
+</div>
+
+<div data-key='70' class="key">
+    <kbd>F</kbd>
+    <span class="sound">Openhat</span>
+</div>
+
+<div data-key='71' class="key">
+    <kbd>G</kbd>
+    <span class="sound">Boom</span>
+</div>
+
+<div data-key='72' class="key">
+    <kbd>H</kbd>
+    <span class="sound">clap</span>
+</div>
+
+<div data-key='74' class="key">
+    <kbd>J</kbd>
+    <span class="sound">clap</span>
+</div>
+
+<div data-key='75' class="key">
+    <kbd>K</kbd>
+    <span class="sound">clap</span>
+</div>
+
+<div data-key='76' class="key">
+    <kbd>L</kbd>
+    <span class="sound">clap</span>
+</div>
+
+<audio data-key="65" src="./kerenke-stormrex.mp3"></audio>
+<audio data-key="83" src="./Flavour_Odiro_Easy.mp3"></audio>
+<audio data-key="68" src="./asha.mp3"></audio>
+<audio data-key="70" src="./asa_be_my_man.mp3"></audio>
+<audio data-key="71" src="./asha.mp3"></audio>
+<audio data-key="72" src="./kerenke-stormrex.mp3"></audio>
+<audio data-key="74" src="./Flavour_Odiro_Easy.mp3"></audio>
+<audio data-key="75" src="./kerenke-stormrex.mp3"></audio>
+<audio data-key="76" src="./asa_be_my_man.mp3"></audio>
+
+        </div>
+        <script>
+window.addEventListener('keydown', function(e){
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(!audio)return;
+    audio.currentTime = 0;
+    audio.play()
+    key.classList.add('playing');
+});
+function removeTransition(e){
+    if(e.propertyName !== "transform") return;
+    this.classList.remove('playing');
+}
+
+const keys = document.querySelectorAll(".key");
+for(let i = 0; i < keys.length; i++){
+    keys[i].addEventListener('transitionend', removeTransition)
+}
+
+var randomcolor = function(){
+     var rvalue = function(){
+         return Math.round(Math.random() * 225);
+     }
+     return 'rgb(' + rvalue() + "," + rvalue() + "," + rvalue() +')';
+ }
+
+const exps = document.querySelector('body');
+    exps.onload = function(){
+    exps.style.backgroundColor = randomColor();
+}
+</script>
+    </body>
+</html>
